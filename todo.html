@@ -20,6 +20,7 @@
   li { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
   li span { flex: 1; word-break: break-all; }
   li.done span { text-decoration: line-through; color: #999; }
+  li.overdue span { color: #dc2626; }
   .empty { color: #888; text-align: center; padding: 12px 0; }
 </style>
 </head>
@@ -79,7 +80,10 @@
         due.className = "due";
         due.textContent = "期限: " + todo.due;
         // 期限を過ぎていて未完了なら赤字にする
-        if (!todo.done && todo.due < today()) due.classList.add("overdue");
+        if (!todo.done && todo.due < today()) {
+          due.classList.add("overdue");
+          li.classList.add("overdue");
+        }
         text.appendChild(due);
       }
 
